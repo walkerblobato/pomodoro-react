@@ -2,6 +2,7 @@ import { clear } from '@testing-library/user-event/dist/clear';
 import { useEffect, useState } from 'react';
 import Botao from './Botao'
 
+
 function Cronometro() {
     const[time, updateTime] = useState(1500000)  
     const[running, updateRunning] = useState(false)
@@ -41,6 +42,15 @@ function Cronometro() {
         updateTime(1500000)
     }
 
+    const upTime = () => {
+        updateTime((time) => time + 60000);
+    };
+
+    const downTime = () => {
+        updateTime((time) => time - 60000);
+        
+    };
+
     return (
         <div>
             <div className="cronometro">
@@ -55,7 +65,9 @@ function Cronometro() {
                     Reset
                 </Botao>
             </div>
-        </div>       
+        </div>
+        
+
     )
 }
 
