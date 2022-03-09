@@ -1,34 +1,57 @@
-import Cronometro from '../Cronometro/Cronometro'
-import PartDown from '../PartDown/PartDown'
+import Cronometro from '../Cronometro/Cronometro';
+import PartDown from '../PartDown/PartDown';
+import { Notes } from '../Notes/Notes';
+import { Spotify } from '../Spotify/Spotify';
+import { Spotify_Api } from '../Spotify/Spotify_Api';
 import { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBook } from '@fortawesome/free-solid-svg-icons';
 
-let newTime
+
+let newTime;
+const dados = [];
 
 function Pagina() {
     const[time, updateTime] = useState(1500000); 
     const[running, updateRunning] = useState(false);
     const[pause, updatePause] = useState(true);
-
-    if ((running) === false) {
-        newTime = time
-    }
-
-    console.log(newTime)
+    const[style, setStyle] = useState("notes");
+    
+    if ((running) === false && time > 0)  {
+        newTime = time;
+    };
 
     // Contagem do tempo
     const startTime = () => {
-        updateRunning(true);
-        updatePause(false); 
+        if (time > 0) {
+            updateRunning(true);
+            updatePause(false);
+
+            dados.push({
+                horaInicio: new Date(),
+                horaFim: null,
+            });
+        };
     };
 
     useEffect(() => {
-        let interval
+        let interval;
+        const audio = document.querySelector('#audio');
+
+        if (time === 0 && running === true) {
+            audio.play();
+
+            dados[dados.length - 1].horaFim = new Date();
+
+            updateRunning(false);
+        }
 
         if (running && !pause && time > 0) {
             // Função para não executar função abaixo novamente ao clicar em start
             interval = setInterval(() => {
             updateTime((time) => time - 1000);
             }, 1000);
+
         };
 
         return () => {
@@ -40,10 +63,12 @@ function Pagina() {
 
     // Resetar tempo
     const resetTime = () => {
-        updatePause(true)
-        updateRunning(false)
-        updateTime(newTime)
-    }
+        dados.splice(dados.length - 1);
+
+        updatePause(true);
+        updateRunning(false);
+        updateTime(newTime);
+    };
 
     const upTime = () => {
         if (running) return
@@ -52,18 +77,34 @@ function Pagina() {
     };
 
     const downTime = () => {
-        if (running) return
+        if (running) return;
         
-        updateTime((time) => time - 60000);
-        
+        if (time === 60000) {
+            return;
+        };
+
+        updateTime((time) => time - 60000);  
     };
 
+    const openNotes = () => {
+        setStyle("notes2");
+    }
+
+    const closeNotes = () => {
+        setStyle("notes");
+    }
 
     return (
         <main>
+            <Notes style={style} click={closeNotes} dados={dados}/>
             <div className="section-up">
-                <h3>Session</h3>
+                <div className="texts">
+                    <Spotify_Api />
+                    <h3>Session</h3>
+                    <FontAwesomeIcon onClick={openNotes} icon={faBook} className="navegation" />
+                </div>
                 <Cronometro time={time} startTime={startTime} resetTime={resetTime} />
+                <audio id="audio" src="/alarme.mp3"></audio>
             </div>
             <div>
                 <PartDown time={newTime} upTime={upTime} downTime={downTime}/>
@@ -72,4 +113,4 @@ function Pagina() {
     )
 }
 
-export default Pagina
+export default Pagina;

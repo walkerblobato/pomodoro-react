@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Botao from '../Botao/Botao';
 import { MinutsDown} from '../MinutsDown/MinutsDown';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 
 function PartDown({ time, upTime, downTime }) {
@@ -20,11 +22,11 @@ function PartDown({ time, upTime, downTime }) {
                 <h4>Session Length</h4> 
                 <div className="time">
                     <Botao clicou={upTime} className="setas">
-                        +
+                        <FontAwesomeIcon icon={faArrowUp} />
                     </Botao>
                     <MinutsDown time={time}/>
                     <Botao clicou={downTime}className="setas">
-                        -
+                        <FontAwesomeIcon icon={faArrowDown} />
                     </Botao>
                 </div> 
             </div>
@@ -32,11 +34,11 @@ function PartDown({ time, upTime, downTime }) {
                 <h4>Break Length</h4>
                 <div className="time">
                     <Botao clicou={upTimeBreak} className="setas">
-                        +
+                        <FontAwesomeIcon icon={faArrowUp} />
                     </Botao>
                     <MinutsDown time={time_break} />
                     <Botao clicou={downTimeBreak} className="setas">
-                        -
+                        <FontAwesomeIcon icon={faArrowDown} />
                     </Botao>
                 </div> 
             </div>

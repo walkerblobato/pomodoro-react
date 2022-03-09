@@ -1,5 +1,7 @@
-import Botao from '../Botao/Botao'
-import { DigitsUp } from '../DigitsUp/DigitsUp'
+import Botao from '../Botao/Botao';
+import { DigitsUp } from '../DigitsUp/DigitsUp';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay, faRepeat } from '@fortawesome/free-solid-svg-icons';
 
 
 function Cronometro({ time, startTime, resetTime }) {
@@ -9,10 +11,10 @@ function Cronometro({ time, startTime, resetTime }) {
             <DigitsUp time={time}/>
             <div className="botoes">
                 <Botao clicou={startTime} className="botoes-principais">
-                    Start
+                    <FontAwesomeIcon icon={faPlay} /> Start
                 </Botao>
                 <Botao clicou={resetTime} className="botoes-principais">
-                    Reset
+                    <FontAwesomeIcon icon={faRepeat} /> Reset
                 </Botao>
             </div>
         </div>
