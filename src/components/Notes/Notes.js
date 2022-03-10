@@ -10,8 +10,7 @@ export function Notes({ style, click, dados }) {
             </div>
             <div className="part-right">
                 <div className="ajuste-h3">
-                    <h3>Histórico</h3>
-                    <h3 className="sair" onClick={click}>x</h3>
+                    <span className="sair" onClick={click}>x</span>
                 </div>
                 <div className="tabela-historico">
                     <h4>Hora Início</h4>
