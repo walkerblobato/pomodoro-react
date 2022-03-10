@@ -100,7 +100,7 @@ function Pagina() {
             <div className="section-up">
                 <div className="texts">
                     <Spotify_Api />
-                    <h3>Session</h3>
+                    <h3 className="session">Session</h3>
                     <FontAwesomeIcon onClick={openNotes} icon={faBook} className="navegation" />
                 </div>
                 <Cronometro time={time} startTime={startTime} resetTime={resetTime} />

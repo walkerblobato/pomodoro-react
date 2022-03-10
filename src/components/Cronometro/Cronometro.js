@@ -11,10 +11,10 @@ function Cronometro({ time, startTime, resetTime }) {
             <DigitsUp time={time}/>
             <div className="botoes">
                 <Botao clicou={startTime} className="botoes-principais">
-                    <FontAwesomeIcon icon={faPlay} /> Start
+                    <FontAwesomeIcon icon={faPlay} /><span className="start">Start</span>
                 </Botao>
                 <Botao clicou={resetTime} className="botoes-principais">
-                    <FontAwesomeIcon icon={faRepeat} /> Reset
+                    <FontAwesomeIcon icon={faRepeat} /><span className="reset">Reset</span>
                 </Botao>
             </div>
         </div>

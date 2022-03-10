@@ -1,3 +1,7 @@
+import Botao from '../Botao/Botao';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSave } from '@fortawesome/free-solid-svg-icons';
+
 export function Notes({ style, click, dados }) {
 
     // localStorage.setItem(dados);
@@ -5,16 +9,18 @@ export function Notes({ style, click, dados }) {
     return (
         <div className={style}>
             <div className="part-left">
-                <h3>Anotações</h3>
+                <h3>Notes</h3>
                 <textarea className="text"></textarea>
+                <FontAwesomeIcon icon={faSave} className="salvar-textarea"/>
             </div>
             <div className="part-right">
                 <div className="ajuste-h3">
+                    <h3>Historic</h3>
                     <span className="sair" onClick={click}>x</span>
                 </div>
                 <div className="tabela-historico">
-                    <h4>Hora Início</h4>
-                    <h4>Hora Fim</h4>
+                    <h4>Start time</h4>
+                    <h4>End Time</h4>
                 </div>
                 <ul className="historico">
                     {dados.map((item, index) => <li className="dados-historico" key={index}>

@@ -67,7 +67,7 @@ main{
   font-weight: bolder;
   margin: 10px;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 10px;
   border: none;
 }
 
@@ -118,6 +118,8 @@ main{
 
 .navegation {
   cursor: pointer;
+  width: 18px;
+  height: 18px;
 }
 
 main {
@@ -159,20 +161,13 @@ main {
   outline: none;
   margin: 0 30px;
   border-radius: 20PX;
-  padding: 30px;
-}
-
-hr {
-  margin: 0;
-}
-
-.part-left {
-  padding-right: 10px;
+  padding: 20px;
 }
 
 .part-left h3 {
-  margin-left: 30px; 
+  margin: 20px 30px; 
   color: white;
+  text-align: center;
 }
 
 .part-right {
@@ -184,19 +179,23 @@ hr {
 
 .ajuste-h3 {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .sair {
   cursor: pointer;
   position: relative;
-  bottom: 18px;
+  font-family: 'Roboto', sans-serif;
+  left: 105px;
+  font-weight: bolder;
+  font-size: 20px;
+  height: 20px;
 }
 
 .tabela-historico {
   display: flex;
   justify-content: space-between;
-  padding: 0 15px;
+  padding: 0 20px;
   color: #25264e;
   background: white;
   margin-bottom: 25px;
@@ -209,14 +208,33 @@ hr {
 
 .historico {
   margin: 0;
-  padding-left: 20px;
+  padding-left: 15px;
 }
 
 .dados-historico {
-  padding: 5px;
+  padding-left: 25px;
   list-style: decimal;
+  font-weight: bold;
 }
 
 .distancia {
-  padding: 0 47px;
+  padding: 0 53px;
+}
+
+.start {
+  padding: 7px;
+}
+
+.reset {
+  padding: 7px;
+}
+
+.salvar-textarea{
+  position: absolute;
+  left: 290px;
+  bottom: 40px;
+  width: 25px;
+  height: 23px;
+  cursor: pointer;
+  color: #25264e;
 }
