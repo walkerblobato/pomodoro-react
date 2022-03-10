@@ -11,8 +11,8 @@ export const Spotify_Api = () => {
     const [data, setData] = useState({});
 
     useEffect(() => {
-        if (localStorage.getItem("acessToken")) {
-            setToken(localStorage.getItem("acessToken"));
+        if (localStorage.getItem("accessToken")) {
+            setToken(localStorage.getItem("accessToken"));
         }
     }, []);
 
@@ -20,7 +20,7 @@ export const Spotify_Api = () => {
         axios
         .get(PLAYLISTS_ENDPOINT, {
             headers: {
-                authorization: "Bearer" + token,
+                authorization: "Bearer " + token,
             },
         })
         .then((response) => {
