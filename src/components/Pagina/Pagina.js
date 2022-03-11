@@ -1,7 +1,6 @@
 import Cronometro from '../Cronometro/Cronometro';
 import PartDown from '../PartDown/PartDown';
 import { Notes } from '../Notes/Notes';
-import { Spotify } from '../Spotify/Spotify';
 import { Spotify_Api } from '../Spotify/Spotify_Api';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
