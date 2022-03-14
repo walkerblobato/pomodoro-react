@@ -1,4 +1,3 @@
-import Botao from '../Botao/Botao';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
@@ -10,16 +9,16 @@ export function Notes({ style, click, dados }) {
 
     const handleChange = (event) => {
         const salvarDados = event.target.value;
-        setValores(salvarDados);      
+        setValores(salvarDados);
+        consultar();      
     }
  
     const armazenar = (chave, valor) => {
         localStorage.setItem(chave, valor);
-        consultar(chave);
     }
 
-    const consultar = (chave) => {
-        const mostrarDados = localStorage.getItem(chave);
+    const consultar = () => {
+        const mostrarDados = window.localStorage.getItem('ls_valores');
         setValores(mostrarDados);
     }
 
@@ -28,7 +27,8 @@ export function Notes({ style, click, dados }) {
             <div className="part-left">
                 <h3>Notes</h3>
                 <textarea value={valores} onChange={handleChange} className="text"></textarea>
-                <FontAwesomeIcon onClick={() => armazenar('ls_valores', valores)} /*onClick={() => consultar('ls_valores')}*/ icon={faSave} className="salvar-textarea"/>
+                <FontAwesomeIcon onClick={() => armazenar('ls_valores',valores)} icon={faSave} className="salvar-textarea"/>
+                <h3 className='teste'>{valores}</h3>
             </div>
             <div className="part-right">
                 <div className="ajuste-h3">

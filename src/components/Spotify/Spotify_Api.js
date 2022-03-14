@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Spotify_authentication } from './Spotify_authentication';
 
-const PLAYLISTS_ENDPOINT = "https://api.spotify.com/v1/me/playlists";
+const PLAYLISTS_ENDPOINT = "https://api.spotify.com/v1/audio-features?ids=37i9dQZF1DX29n3b5fqT2P";
 
 export const Spotify_Api = () => {
     const [token, setToken] = useState("");
@@ -25,6 +25,7 @@ export const Spotify_Api = () => {
         })
         .then((response) => {
             setData(response.data);
+            console.log(data)
         })
         .catch((error) => {
             console.log(error)

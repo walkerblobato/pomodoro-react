@@ -4,7 +4,6 @@ import React, { useEffect } from 'react';
 const CLIENT_ID = "7d4162ab5fb94f79867df22e4f821eef";
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize";
 const REDIRECT_URL_AFTER_LOGIN = "http://localhost:3000/";
-const SPACE_DELIMITER = "%20";
 const SCOPES = ["user-read-currently-playing", "user-read-playback-state"];
 const SCOPES_URL_PARAM = SCOPES.join("%20");
 
@@ -15,7 +14,6 @@ const getReturnedParamsFromSpotifyAuth = (hash) => {
     const stringAfterHashtag = hash.substring(1);
     const paramsInUrl = stringAfterHashtag.split("&");
     const paramsSplitUp = paramsInUrl.reduce((accumulater, currentValue) => {
-        console.log(currentValue);
         const [key, value] = currentValue.split("=");
         accumulater[key] = value;
         return accumulater;
@@ -32,8 +30,6 @@ export const Spotify_authentication = () => {
                 expires_in,
                 token_type,
             } = getReturnedParamsFromSpotifyAuth(window.location.hash);
-
-            console.log({ access_token });
 
             localStorage.clear();
             localStorage.setItem("accessToken", access_token);
