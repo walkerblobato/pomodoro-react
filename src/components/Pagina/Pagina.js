@@ -27,7 +27,8 @@ function Pagina() {
             updatePause(false);
 
             dados.push({
-                horaInicio: new Date(),
+                data: new Date().toLocaleDateString('pt-BR'),
+                horaInicio: new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }),
                 horaFim: null,
             });
         };
@@ -40,7 +41,7 @@ function Pagina() {
         if (time === 0 && running === true) {
             audio.play();
 
-            dados[dados.length - 1].horaFim = new Date();
+            dados[dados.length - 1].horaFim = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
 
             updateRunning(false);
         }
@@ -78,7 +79,7 @@ function Pagina() {
     const downTime = () => {
         if (running) return;
         
-        if (time === 60000) {
+        if (time === 0) {
             return;
         };
 

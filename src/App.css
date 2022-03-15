@@ -195,11 +195,12 @@ main {
 .tabela-historico {
   display: flex;
   justify-content: space-between;
-  padding: 0 20px;
+  padding-left: 30px;
   color: #25264e;
   background: white;
   margin-bottom: 25px;
   border-radius: 10px;
+  padding-right: 12px;
 }
 
 .tabela-historico h4{
@@ -212,13 +213,16 @@ main {
 }
 
 .dados-historico {
-  padding-left: 25px;
   list-style: decimal;
   font-weight: bold;
 }
 
 .distancia {
-  padding: 0 53px;
+  padding: 0 5px;
+}
+
+.distancia2 {
+  padding: 0 20px
 }
 
 .start {
