@@ -9,11 +9,10 @@ export function Notes({ style, click, dados }) {
     const[valores, setValores] = useState('');
     
     let novosDados = [];
-    novosDados.push(dados)
-
+    novosDados.push(dados);
     localStorage.setItem('ls_dados', JSON.stringify(novosDados));
     novosDados = JSON.parse(window.localStorage.getItem('ls_dados'));
-    
+   
     useEffect(() => {
         const mostrarTextArea = window.localStorage.getItem('ls_valores');
         setValores(mostrarTextArea);

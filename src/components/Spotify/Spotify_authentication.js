@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 
-
 const CLIENT_ID = "7d4162ab5fb94f79867df22e4f821eef";
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize";
 const REDIRECT_URL_AFTER_LOGIN = "http://localhost:3000/";
