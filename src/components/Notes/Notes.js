@@ -1,23 +1,26 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
+import Botao from '../Botao/Botao';
 
 
 export function Notes({ style, click, dados }) {
 
     const[valores, setValores] = useState('');
-    const[newDados, setDados] = useState();
+    
+    let novosDados = [];
+    novosDados.push(dados)
 
+    localStorage.setItem('ls_dados', JSON.stringify(novosDados));
+    novosDados = JSON.parse(window.localStorage.getItem('ls_dados'));
+    
     useEffect(() => {
         const mostrarTextArea = window.localStorage.getItem('ls_valores');
         setValores(mostrarTextArea);
     }, ['ls_valores']);
 
     useEffect(() => {
-        setDados(dados);
-        localStorage.setItem('ls_dados', dados);
-        const mostrarDados = window.localStorage.getItem('ls_dados');
-        setDados(mostrarDados);
+        return
     }, ['ls_dados']);
 
     const handleChange = (event) => {
@@ -29,10 +32,12 @@ export function Notes({ style, click, dados }) {
     }
 
     const mostrarDados = () => {
-        return dados.map((item, index) => 
-        <li className="dados-historico" key={index}>
-            {item.data} <span className="distancia">-</span> {item.horaInicio} <span className="distancia2">-</span> {item.horaFim ? item.horaFim : 'Running'}
-        </li>)
+        return 
+    }
+
+    const limparHistorico = () => {
+        localStorage.removeItem('ls_dados');
+        mostrarDados.splice()
     }
 
     return (
@@ -53,8 +58,12 @@ export function Notes({ style, click, dados }) {
                     <h4>End Time</h4>
                 </div>
                 <ul className="historico">
-                    {mostrarDados()}
+                    {novosDados.map((item, index) => 
+                    <li className="dados-historico" key={index}>
+                        {item.data} <span className="distancia">:</span> {item.horaInicio} <span className="distancia2">-</span> {item.horaFim ? item.horaFim : 'Running'}
+                    </li>)}
                 </ul>
+                <Botao className="limpar" onClick={() => limparHistorico()}>Limpar</Botao>
             </div>
         </div>
     )

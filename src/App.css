@@ -162,6 +162,7 @@ main {
   margin: 0 30px;
   border-radius: 20PX;
   padding: 20px;
+  color: #25264e;
 }
 
 .part-left h3 {
@@ -218,7 +219,7 @@ main {
 }
 
 .distancia {
-  padding: 0 5px;
+  padding-right: 13px;
 }
 
 .distancia2 {
@@ -243,6 +244,27 @@ main {
   color: #25264e;
 }
 
-.teste{
+.teste {
   color: white;
+}
+
+.limpar {
+  position: relative;
+  background-color: white;
+  color: #25264e;
+  width: 70px;
+  height: 28px;
+  font-size: 16px;
+  font-weight: bolder;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+  top: 294px;
+  left: 220px;
+}
+
+.limpar:hover {
+  background-color: rgba(219, 219, 219, 0.644);
+  transition: all ease-in 0.8s;
 }
