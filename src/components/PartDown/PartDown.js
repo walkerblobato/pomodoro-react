@@ -21,11 +21,11 @@ function PartDown({ time, upTime, downTime }) {
             <div>
                 <h4>Session Length</h4> 
                 <div className="time">
-                    <Botao clicou={upTime} className="setas">
+                    <Botao clicou={upTime} className="arrows">
                         <FontAwesomeIcon icon={faArrowUp} />
                     </Botao>
                     <MinutsDown time={time}/>
-                    <Botao clicou={downTime}className="setas">
+                    <Botao clicou={downTime}className="arrows">
                         <FontAwesomeIcon icon={faArrowDown} />
                     </Botao>
                 </div> 
@@ -33,11 +33,11 @@ function PartDown({ time, upTime, downTime }) {
             <div> 
                 <h4>Break Length</h4>
                 <div className="time">
-                    <Botao clicou={upTimeBreak} className="setas">
+                    <Botao clicou={upTimeBreak} className="arrows">
                         <FontAwesomeIcon icon={faArrowUp} />
                     </Botao>
                     <MinutsDown time={time_break} />
-                    <Botao clicou={downTimeBreak} className="setas">
+                    <Botao clicou={downTimeBreak} className="arrows">
                         <FontAwesomeIcon icon={faArrowDown} />
                     </Botao>
                 </div> 

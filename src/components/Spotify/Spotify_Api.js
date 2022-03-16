@@ -20,10 +20,13 @@ export const setClientToken = (token) => {
 }
 
 export const Spotify_Api = () => {
-    const[player, SetPlayer] = useState("");
+    const[plalists, setPlaylists] = useState(null);
 
     useEffect(() => {
-        apiClient.get("audio-features").then(response => {console.log(response.data)})
+        apiClient.get("me/playlists").then(function (response) {
+        setPlaylists(response.data.items);
+        console.log(response.data.item);
+        });
     }, [])
     /*
     const [token, setToken] = useState("");
@@ -51,11 +54,12 @@ export const Spotify_Api = () => {
         });
     };
     
-    <FontAwesomeIcon icon={faHeadphones} className="navegation" onClick={handleGetPlaylists}/>
+    
     */
 
     return (
         <div>
+            <FontAwesomeIcon icon={faHeadphones} className="navegation"/>
             <SpotifyAuth />
         </div>
     )

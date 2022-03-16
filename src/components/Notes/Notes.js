@@ -43,26 +43,26 @@ export function Notes({ style, click, dados }) {
         <div className={style}>
             <div className="part-left">
                 <h3>Notes</h3>
-                <textarea value={valores} onChange={handleChange} className="text"></textarea>
-                <FontAwesomeIcon onClick={() => armazenar('ls_valores', valores)} icon={faSave} className="salvar-textarea" />
+                <textarea value={valores} onChange={handleChange} className="text-area"></textarea>
+                <FontAwesomeIcon onClick={() => armazenar('ls_valores', valores)} icon={faSave} className="save-textarea" />
             </div>
             <div className="part-right">
-                <div className="ajuste-h3">
+                <div className="header">
                     <h3>Historic</h3>
-                    <span className="sair" onClick={click}>x</span>
+                    <span className="go-out" onClick={click}>x</span>
                 </div>
-                <div className="tabela-historico">
+                <div className="historical-table">
                     <h4>Date</h4>
                     <h4>Start time</h4>
                     <h4>End Time</h4>
                 </div>
-                <ul className="historico">
+                <ul className="historical-spacing">
                     {novosDados.map((item, index) => 
-                    <li className="dados-historico" key={index}>
-                        {item.data} <span className="distancia">:</span> {item.horaInicio} <span className="distancia2">-</span> {item.horaFim ? item.horaFim : 'Running'}
+                    <li className="historical-data" key={index}>
+                        {item.data} <span className="data-spacing1">:</span> {item.horaInicio} <span className="data-spacing2">-</span> {item.horaFim ? item.horaFim : 'Running'}
                     </li>)}
                 </ul>
-                <Botao className="limpar" onClick={() => limparHistorico()}>Limpar</Botao>
+                <Botao className="clean" onClick={() => limparHistorico()}>Clean</Botao>
             </div>
         </div>
     )

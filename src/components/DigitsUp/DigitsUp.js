@@ -4,7 +4,8 @@ export function DigitsUp( {time} ) {
         ("0" + time).slice(-2);
 
     return (
-        <div className="cronometro">
+        <div className="
+        stopwatch">
             <span id='minuts'>{addZero(Math.floor((time / 60000) % 60))}</span>
             <span id='seconds'>{addZero(Math.floor((time / 1000) % 60))}</span>
         </div>

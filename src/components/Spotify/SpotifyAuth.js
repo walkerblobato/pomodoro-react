@@ -39,7 +39,7 @@ export const SpotifyAuth = ({}) => {
     }
 
     return (
-        <Botao class="logar-spotify" onClick={loginEndpoint} token={token}>
+        <Botao class="login-spotify" onClick={loginEndpoint} token={token}>
             Login Spotify
         </Botao>
     )

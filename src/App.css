@@ -39,10 +39,10 @@ main{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 10px 20px;
 }
 
-.cronometro {
+.stopwatch {
   display: flex;
   justify-content: center;
   font-size: 100px;
@@ -50,17 +50,17 @@ main{
   margin: 10px;
 }
 
-.cronometro #seconds::before {
+.stopwatch #seconds::before {
   content: ":";
 }
 
-.botoes{
+.buttons {
   display: flex;
   justify-content: center;
   margin: 50px;
 }
 
-.botoes-principais {
+.buttons-main {
   width: 100px;
   height: 40px;
   font-size: 16px;
@@ -71,7 +71,7 @@ main{
   border: none;
 }
 
-.botoes-principais:hover {
+.buttons-main:hover {
   background-color: rgba(219, 219, 219, 0.644);
   transition: all ease-in 0.8s;
 }
@@ -92,7 +92,7 @@ main{
   justify-content: space-between;
 }
 
-.part-down .time .setas {
+.part-down .time .arrows {
   background-color: rgb(37, 38, 78);
   width: 23px;
   display: flex;
@@ -106,7 +106,7 @@ main{
   border: none
 }
 
-.setas:hover{
+.arrows:hover{
   opacity: 0.9;
   transition: all ease-in 0.8s;
 }
@@ -152,7 +152,7 @@ main {
   overflow-x: auto;
 }
 
-.text {
+.text-area {
   width: 300px;
   height: 400px;
   font-size: 16px;
@@ -178,22 +178,23 @@ main {
   width: 100%;
 }
 
-.ajuste-h3 {
+.header {
   display: flex;
   justify-content: center;
 }
 
-.sair {
+.go-out {
   cursor: pointer;
   position: relative;
   font-family: 'Roboto', sans-serif;
+  top: 3px;
   left: 105px;
   font-weight: bolder;
   font-size: 20px;
   height: 20px;
 }
 
-.tabela-historico {
+.historical-table {
   display: flex;
   justify-content: space-between;
   padding-left: 30px;
@@ -204,25 +205,25 @@ main {
   padding-right: 12px;
 }
 
-.tabela-historico h4{
+.historical-table h4{
   margin: 10px;
 }
 
-.historico {
+.historical-spacing {
   margin: 0;
   padding-left: 15px;
 }
 
-.dados-historico {
+.historical-data {
   list-style: decimal;
   font-weight: bold;
 }
 
-.distancia {
+.data-spacing1 {
   padding-right: 13px;
 }
 
-.distancia2 {
+.data-spacing2 {
   padding: 0 20px
 }
 
@@ -234,7 +235,7 @@ main {
   padding: 7px;
 }
 
-.salvar-textarea{
+.save-textarea{
   position: absolute;
   left: 290px;
   bottom: 40px;
@@ -248,11 +249,11 @@ main {
   color: white;
 }
 
-.limpar {
+.clean {
   position: relative;
   background-color: white;
   color: #25264e;
-  width: 70px;
+  width: 60px;
   height: 28px;
   font-size: 16px;
   font-weight: bolder;
@@ -260,16 +261,16 @@ main {
   cursor: pointer;
   border-radius: 10px;
   border: none;
-  top: 294px;
+  top: 270px;
   left: 220px;
 }
 
-.limpar:hover {
+.clean:hover {
   background-color: rgba(219, 219, 219, 0.644);
   transition: all ease-in 0.8s;
 }
 
-.logar-spotify {
+.login-spotify {
   background-color: white;
   width: 104px;
   height: 23px;
@@ -281,7 +282,12 @@ main {
   border: none;
 }
 
-.logar-spotify:hover {
+.login-spotify:hover {
   background-color: rgba(219, 219, 219, 0.644);
   transition: all ease-in 0.8s;
+}
+
+.session {
+  text-align: center;
+  margin: 0;
 }
