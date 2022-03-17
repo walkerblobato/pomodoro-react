@@ -11,10 +11,27 @@ let newTime;
 const dados = [];
 
 function Pagina() {
-    const[time, updateTime] = useState(1500000); 
+    const[time, updateTime] = useState(10000); 
     const[running, updateRunning] = useState(false);
     const[pause, updatePause] = useState(true);
     const[style, setStyle] = useState("notes");
+    
+    let saveDados;
+    
+    useEffect(() => {
+        const saveDados = JSON.parse(localStorage.getItem('ls_dados'));
+        if (saveDados) {setDados(saveDados);
+        }
+      }, []);
+
+      const[dados, setDados] = useState(saveDados || []);
+      
+      useEffect(() => {
+        if(dados?.length) { // only store the state if products exists and it's length is greater than 0
+          localStorage.setItem('ls_dados', JSON.stringify(dados));
+        }
+      }, [dados]);
+    
     
     if ((running) === false && time > 0)  {
         newTime = time;

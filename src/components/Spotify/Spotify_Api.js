@@ -14,13 +14,13 @@ export const apiClient = axios.create({
 
 export const setClientToken = (token) => {
     apiClient.interceptors.request.use(async function (config) {
-        config.headers.Athorization = "Bearer" + token;
+        config.headers.Authorization = "Bearer " + token;
         return config;
     });
 }
 
 export const Spotify_Api = () => {
-    const[plalists, setPlaylists] = useState(null);
+    const[playlists, setPlaylists] = useState(null);
 
     useEffect(() => {
         apiClient.get("me/playlists").then(function (response) {

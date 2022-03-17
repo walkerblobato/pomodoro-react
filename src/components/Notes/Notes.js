@@ -7,11 +7,10 @@ import Botao from '../Botao/Botao';
 export function Notes({ style, click, dados }) {
 
     const[valores, setValores] = useState('');
-    
-    let novosDados = [];
-    novosDados.push(dados);
-    localStorage.setItem('ls_dados', JSON.stringify(novosDados));
-    novosDados = JSON.parse(window.localStorage.getItem('ls_dados'));
+
+    useEffect(() => {
+        return
+    }, [])
    
     useEffect(() => {
         const mostrarTextArea = window.localStorage.getItem('ls_valores');
@@ -36,7 +35,6 @@ export function Notes({ style, click, dados }) {
 
     const limparHistorico = () => {
         localStorage.removeItem('ls_dados');
-        mostrarDados.splice()
     }
 
     return (
@@ -57,7 +55,7 @@ export function Notes({ style, click, dados }) {
                     <h4>End Time</h4>
                 </div>
                 <ul className="historical-spacing">
-                    {novosDados.map((item, index) => 
+                    {dados.map((item, index) => 
                     <li className="historical-data" key={index}>
                         {item.data} <span className="data-spacing1">:</span> {item.horaInicio} <span className="data-spacing2">-</span> {item.horaFim ? item.horaFim : 'Running'}
                     </li>)}
