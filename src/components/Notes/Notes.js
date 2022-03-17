@@ -7,10 +7,11 @@ import Botao from '../Botao/Botao';
 export function Notes({ style, click, dados }) {
 
     const[valores, setValores] = useState('');
-
-    useEffect(() => {
-        return
-    }, [])
+    
+    let novosDados = [];
+    novosDados.push(dados);
+    localStorage.setItem('ls_dados', JSON.stringify(novosDados));
+    novosDados = JSON.parse(window.localStorage.getItem('ls_dados'));
    
     useEffect(() => {
         const mostrarTextArea = window.localStorage.getItem('ls_valores');
@@ -35,6 +36,7 @@ export function Notes({ style, click, dados }) {
 
     const limparHistorico = () => {
         localStorage.removeItem('ls_dados');
+        mostrarDados.splice()
     }
 
     return (

@@ -12,6 +12,8 @@ export const SpotifyAuth = ({}) => {
     const [token, setToken] = useState("");
 
     useEffect(() => {
+        const token = window.localStorage.getItem("token");
+
         // const hash é utilizada para pegar url a partir #
         const hash = window.location.hash;
 

@@ -15,11 +15,11 @@ function Pagina() {
     const[running, updateRunning] = useState(false);
     const[pause, updatePause] = useState(true);
     const[style, setStyle] = useState("notes");
-    
+
     let saveDados;
     
     useEffect(() => {
-        const saveDados = JSON.parse(localStorage.getItem('ls_dados'));
+        saveDados = JSON.parse(localStorage.getItem('ls_dados'));
         if (saveDados) {setDados(saveDados);
         }
       }, []);

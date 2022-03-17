@@ -3,8 +3,7 @@ import { faHeadphones } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { SpotifyAuth } from './SpotifyAuth'
-import { config } from '@fortawesome/fontawesome-svg-core';
-// import { Spotify_authentication } from './Spotify_authentication';
+import { config, dom } from '@fortawesome/fontawesome-svg-core';
 
 const PLAYLISTS_ENDPOINT = "https://api.spotify.com/v1/audio-features?ids=37i9dQZF1DX29n3b5fqT2P";
 
@@ -23,11 +22,13 @@ export const Spotify_Api = () => {
     const[playlists, setPlaylists] = useState(null);
 
     useEffect(() => {
-        apiClient.get("me/playlists").then(function (response) {
+        apiClient.get("me/playlists/").then(function (response) {
         setPlaylists(response.data.items);
-        console.log(response.data.item);
+        console.log(response.data.items[0]);
         });
-    }, [])
+    }, []);
+
+  
     /*
     const [token, setToken] = useState("");
     const [data, setData] = useState({});
@@ -59,10 +60,10 @@ export const Spotify_Api = () => {
 
     return (
         <div>
-            <FontAwesomeIcon icon={faHeadphones} className="navegation"/>
+            <FontAwesomeIcon icon={faHeadphones} className="navegation" />
             <SpotifyAuth />
         </div>
-    )
+    );
 }
 
 export default setClientToken;
