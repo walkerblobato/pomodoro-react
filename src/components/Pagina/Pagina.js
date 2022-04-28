@@ -68,7 +68,6 @@ function Pagina() {
             interval = setInterval(() => {
             updateTime((time) => time - 1000);
             }, 1000);
-
         };
 
         return () => {

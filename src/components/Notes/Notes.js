@@ -4,23 +4,17 @@ import { useState, useEffect } from 'react';
 import Botao from '../Botao/Botao';
 
 
-export function Notes({ style, click, dados }) {
+export function Notes({ style, click, dados, historico, setHistorico }) {
 
     const[valores, setValores] = useState('');
     
-    let novosDados = [];
-    novosDados.push(dados);
-    localStorage.setItem('ls_dados', JSON.stringify(novosDados));
-    novosDados = JSON.parse(window.localStorage.getItem('ls_dados'));
+    localStorage.setItem('ls_dados', JSON.stringify(dados));
+    JSON.parse(window.localStorage.getItem('ls_dados'));
    
     useEffect(() => {
         const mostrarTextArea = window.localStorage.getItem('ls_valores');
         setValores(mostrarTextArea);
-    }, ['ls_valores']);
-
-    useEffect(() => {
-        return
-    }, ['ls_dados']);
+    }, []);
 
     const handleChange = (event) => {
         setValores(event.target.value);
@@ -31,12 +25,20 @@ export function Notes({ style, click, dados }) {
     }
 
     const mostrarDados = () => {
-        return 
+        if (historico) {
+            dados.splice(0, dados.length)
+        }
+
+        return ( 
+        dados.map((item, index) => 
+        <li className="historical-data" key={index}>
+            {item.data} <span className="data-spacing1">:</span> {item.horaInicio} <span className="data-spacing2">-</span> {item.horaFim ? item.horaFim : 'Running'}
+        </li>))
     }
 
     const limparHistorico = () => {
         localStorage.removeItem('ls_dados');
-        mostrarDados.splice()
+        setHistorico(true)
     }
 
     return (
@@ -57,10 +59,7 @@ export function Notes({ style, click, dados }) {
                     <h4>End Time</h4>
                 </div>
                 <ul className="historical-spacing">
-                    {dados.map((item, index) => 
-                    <li className="historical-data" key={index}>
-                        {item.data} <span className="data-spacing1">:</span> {item.horaInicio} <span className="data-spacing2">-</span> {item.horaFim ? item.horaFim : 'Running'}
-                    </li>)}
+                    {mostrarDados()}
                 </ul>
                 <Botao className="clean" onClick={() => limparHistorico()}>Clean</Botao>
             </div>
