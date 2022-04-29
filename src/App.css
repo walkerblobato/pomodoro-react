@@ -212,6 +212,7 @@ main {
 .historical-spacing {
   margin: 0;
   padding-left: 15px;
+  height: 295px;
 }
 
 .historical-data {
@@ -250,7 +251,6 @@ main {
 }
 
 .clean {
-  position: relative;
   background-color: white;
   color: #25264e;
   width: 60px;
@@ -261,8 +261,7 @@ main {
   cursor: pointer;
   border-radius: 10px;
   border: none;
-  top: 270px;
-  left: 220px;
+  margin-left: 80%;
 }
 
 .clean:hover {

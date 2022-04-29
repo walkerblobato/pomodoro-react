@@ -8,40 +8,31 @@ import { faBook } from '@fortawesome/free-solid-svg-icons';
 
 
 let newTime;
-const dados = [];
+let interval;
 
 function Pagina() {
     const[time, updateTime] = useState(10000); 
     const[running, updateRunning] = useState(false);
     const[pause, updatePause] = useState(true);
     const[style, setStyle] = useState("notes");
-
-    let saveDados;
+    const [historico, setHistorico] = useState(false);
     
-    useEffect(() => {
-        saveDados = JSON.parse(localStorage.getItem('ls_dados'));
-        if (saveDados) {setDados(saveDados);
-        }
-      }, []);
+    const [dados] = useState(() => {
+        const dadosSalvos = JSON.parse(localStorage.getItem('ls_dados'));
 
-      const[dados, setDados] = useState(saveDados || []);
-      
-      useEffect(() => {
-        if(dados?.length) { // only store the state if products exists and it's length is greater than 0
-          localStorage.setItem('ls_dados', JSON.stringify(dados));
-        }
-      }, [dados]);
+        return dadosSalvos || [];
+    })
     
     
     if ((running) === false && time > 0)  {
         newTime = time;
     };
 
-    // Contagem do tempo
     const startTime = () => {
         if (time > 0) {
             updateRunning(true);
             updatePause(false);
+            setHistorico(false);
 
             dados.push({
                 data: new Date().toLocaleDateString('pt-BR'),
@@ -52,7 +43,6 @@ function Pagina() {
     };
 
     useEffect(() => {
-        let interval;
         const audio = document.querySelector('#audio');
 
         if (time === 0 && running === true) {
@@ -63,23 +53,25 @@ function Pagina() {
             updateRunning(false);
         }
 
+        // Condiçõespara não executar função abaixo novamente ao clicar em start
         if (running && !pause && time > 0) {
-            // Função para não executar função abaixo novamente ao clicar em start
             interval = setInterval(() => {
             updateTime((time) => time - 1000);
             }, 1000);
         };
 
+        // Para limpar a variável interval quando uma das condições não forem atendidas
         return () => {
-            // Para limpar a variável interval quando uma das condições não forem atendidas
             clearInterval(interval);
         };
 
-    }, [running, pause, time]);
+    }, [running, pause, time, dados]);
 
     // Resetar tempo
     const resetTime = () => {
-        dados.splice(dados.length - 1);
+        if (time > 0) {
+            dados.splice(dados.length - 1);
+        }
 
         updatePause(true);
         updateRunning(false);
@@ -112,7 +104,7 @@ function Pagina() {
 
     return (
         <main>
-            <Notes style={style} click={closeNotes} dados={dados}/>
+            <Notes style={style} click={closeNotes} dados={dados} historico={historico} setHistorico={setHistorico} />
             <div className="section-up">
                 <div className="texts">
                     <Spotify_Api />
