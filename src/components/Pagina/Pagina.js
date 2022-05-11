@@ -11,7 +11,7 @@ let newTime;
 let interval;
 
 function Pagina() {
-    const[time, updateTime] = useState(10000); 
+    const[time, updateTime] = useState(1500000); 
     const[running, updateRunning] = useState(false);
     const[pause, updatePause] = useState(true);
     const[style, setStyle] = useState("notes");
@@ -42,6 +42,14 @@ function Pagina() {
         };
     };
 
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            return 500;
+        } 
+
+        return 1000;
+    });
+
     useEffect(() => {
         const audio = document.querySelector('#audio');
 
@@ -56,8 +64,8 @@ function Pagina() {
         // Condiçõespara não executar função abaixo novamente ao clicar em start
         if (running && !pause && time > 0) {
             interval = setInterval(() => {
-            updateTime((time) => time - 1000);
-            }, 1000);
+            updateTime((time) => (time - 1000));
+            }, document.hidden ? 500 : 1000);
         };
 
         // Para limpar a variável interval quando uma das condições não forem atendidas
