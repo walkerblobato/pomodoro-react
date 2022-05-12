@@ -1,6 +1,6 @@
 import Cronometro from '../Cronometro/Cronometro';
 import PartDown from '../PartDown/PartDown';
-import { Notes } from '../Notes/Notes';
+import { Information } from '../Information/Information';
 import { Spotify_Api } from '../Spotify/Spotify_Api';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,50 +22,25 @@ function Pagina() {
 
         return dadosSalvos || [];
     })
-    
-    
-    if ((running) === false && time > 0)  {
-        newTime = time;
-    };
-
+     
     const startTime = () => {
         if (time > 0) {
             updateRunning(true);
             updatePause(false);
             setHistorico(false);
-
-            dados.push({
-                data: new Date().toLocaleDateString('pt-BR'),
-                horaInicio: new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }),
-                horaFim: null,
-            });
+            inicialDateAndHour();       
         };
     };
 
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-            return 500;
-        } 
-
-        return 1000;
-    });
-
-    useEffect(() => {
-        const audio = document.querySelector('#audio');
-
+    useEffect(() => {  
         if (time === 0 && running === true) {
-            audio.play();
-
-            dados[dados.length - 1].horaFim = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
-
+            playSound();
+            finishHour();
             updateRunning(false);
         }
 
-        // Condiçõespara não executar função abaixo novamente ao clicar em start
         if (running && !pause && time > 0) {
-            interval = setInterval(() => {
-            updateTime((time) => (time - 1000));
-            }, document.hidden ? 500 : 1000);
+            pomodoroTimer();
         };
 
         // Para limpar a variável interval quando uma das condições não forem atendidas
@@ -73,9 +48,8 @@ function Pagina() {
             clearInterval(interval);
         };
 
-    }, [running, pause, time, dados]);
+    }, [running, pause, time]);
 
-    // Resetar tempo
     const resetTime = () => {
         if (time > 0) {
             dados.splice(dados.length - 1);
@@ -110,9 +84,40 @@ function Pagina() {
         setStyle("notes");
     }
 
+    const sessionTime = () => {
+        if ((running) === false && time > 0)  {
+            newTime = time;
+        };
+
+        return newTime
+    }
+
+    const inicialDateAndHour = () => {
+        dados.push({
+            data: new Date().toLocaleDateString('pt-BR'),
+            horaInicio: new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }),
+            horaFim: null,
+        });
+    }
+
+    const finishHour = () => {
+        dados[dados.length - 1].horaFim = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    const pomodoroTimer = () => {
+        interval = setInterval(() => {
+        updateTime((time) => (time - 1000));
+        }, document.hidden ? 500 : 1000);
+    }
+
+    const playSound = () => {
+        const audio = document.querySelector('#audio');
+        audio.play();
+    }
+
     return (
         <main>
-            <Notes style={style} click={closeNotes} dados={dados} historico={historico} setHistorico={setHistorico} />
+            <Information style={style} click={closeNotes} dados={dados} historico={historico} setHistorico={setHistorico} />
             <div className="section-up">
                 <div className="texts">
                     <Spotify_Api />
@@ -123,7 +128,7 @@ function Pagina() {
                 <audio id="audio" src="/alarme.mp3"></audio>
             </div>
             <div>
-                <PartDown time={newTime} upTime={upTime} downTime={downTime}/>
+                <PartDown time={sessionTime()} upTime={upTime} downTime={downTime}/>
             </div>
         </main>
     )

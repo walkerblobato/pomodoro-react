@@ -165,13 +165,13 @@ main {
   color: #25264e;
 }
 
-.part-left h3 {
+.notations h3 {
   margin: 20px 30px; 
   color: white;
   text-align: center;
 }
 
-.part-right {
+.historical {
   border-left: 1px solid #878787;
   color: white;
   padding: 0 20px;
