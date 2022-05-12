@@ -116,7 +116,7 @@ function Pagina() {
     }
 
     return (
-        <main>
+        <main className="main">
             <Information style={style} click={closeNotes} dados={dados} historico={historico} setHistorico={setHistorico} />
             <div className="section-up">
                 <div className="texts">
