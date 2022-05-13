@@ -358,6 +358,10 @@ main {
     margin-bottom: 10px;
   }
 
+  h1 {
+    margin: 25px 20px;
+  }
+
 }
 
 @media (min-width: 701px) {
