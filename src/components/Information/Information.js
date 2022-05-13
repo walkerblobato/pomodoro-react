@@ -42,8 +42,8 @@ export function Information({ style, click, dados, historico, setHistorico }) {
 
     return (
         <div className={style}>
-            <Notes valores={valores} handleChange={handleChange} armazenar={armazenar}/>
             <Historic click={click} mostrarDados={mostrarDados} limparHistorico={limparHistorico}/>
+            <Notes valores={valores} handleChange={handleChange} armazenar={armazenar}/>
         </div>
     )
 }

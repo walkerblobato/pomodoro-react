@@ -236,8 +236,8 @@ main {
 
 .save-textarea{
   position: absolute;
-  left: 290px;
-  bottom: 40px;
+  left: 310px;
+  bottom: -465px;
   width: 25px;
   height: 23px;
   cursor: pointer;
@@ -318,11 +318,12 @@ main {
   }
 
   .notes2 {
-    flex-direction: column-reverse;
+    flex-direction: column;
     border-radius: 0;
   }
 
   .notes {
+    flex-direction: column;
     width: 100%;
   }
 
@@ -363,5 +364,20 @@ main {
   body {
     display: flex;
     justify-content: center;
+  }
+
+  .notes2 {
+    flex-direction: row-reverse;
+    border-radius: 0;
+  }
+
+  .notes {
+    flex-direction: row-reverse;
+    width: 100%;
+  }
+  
+  .save-textarea {
+    left: 290px;
+    bottom: 40px;
   }
 }
