@@ -8,8 +8,6 @@ html, body {
   padding: 0;
   background: #E8E8E8;
   background-color: black;
-  display: flex;
-  justify-content: center;
 }
 
 h1{
@@ -291,8 +289,8 @@ main {
   margin: 0;
 }
 
-@media (max-width: 450px){
-  
+@media (max-width: 700px){
+
   .main {
     display: flex;
     flex-direction: column;
@@ -317,5 +315,52 @@ main {
   .buttons {
     margin: 0;
     padding: 20px;
+  }
+
+  .notes2 {
+    flex-direction: column-reverse;
+    border-radius: 0;
+  }
+
+  .notes {
+    width: 100%;
+  }
+
+  .historical {
+    border-bottom: 1px solid #878787;
+  }
+
+  .go-out {
+    left: 120px;
+    top: 0;
+  }
+
+  .clean {
+    margin: 20px 80%;
+  }
+
+  .text-area {
+    margin: 20px;
+    width: 335px;
+  }
+
+  .header {
+    margin: 10px;
+  }
+
+  .notations h3 {
+    margin: 30px;
+  }
+
+  h1 {
+    margin: 40px;
+  }
+
+}
+
+@media (min-width: 701px) {
+  body {
+    display: flex;
+    justify-content: center;
   }
 }
