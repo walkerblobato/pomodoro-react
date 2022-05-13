@@ -348,12 +348,13 @@ main {
     margin: 10px;
   }
 
-  .notations h3 {
-    margin: 30px;
+  .header h3 {
+    margin: 20px;
   }
 
-  h1 {
-    margin: 40px 20px;
+  .notations h3 {
+    margin-top: 30px;
+    margin-bottom: 10px;
   }
 
 }
