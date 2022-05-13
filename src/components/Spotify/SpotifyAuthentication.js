@@ -21,7 +21,7 @@ const getReturnedParamsFromSpotifyAuth = (hash) => {
     return paramsSplitUp;
 };
 
-export const Spotify_authentication = () => {
+export const SpotifyAuthentication = () => {
     useEffect(() => {
         if (window.location.hash) {
             const {

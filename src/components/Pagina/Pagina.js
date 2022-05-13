@@ -1,7 +1,7 @@
 import Cronometro from '../Cronometro/Cronometro';
 import PartDown from '../PartDown/PartDown';
 import { Information } from '../Information/Information';
-import { Spotify_Api } from '../Spotify/Spotify_Api';
+import { SpotifyApi } from '../Spotify/SpotifyApi';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
@@ -32,7 +32,13 @@ function Pagina() {
         };
     };
 
+    
+
     useEffect(() => {  
+        const finishHour = () => {
+            dados[dados.length - 1].horaFim = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+        }
+
         if (time === 0 && running === true) {
             playSound();
             finishHour();
@@ -48,7 +54,7 @@ function Pagina() {
             clearInterval(interval);
         };
 
-    }, [running, pause, time]);
+    }, [running, pause, time, dados]);
 
     const resetTime = () => {
         if (time > 0) {
@@ -100,10 +106,6 @@ function Pagina() {
         });
     }
 
-    const finishHour = () => {
-        dados[dados.length - 1].horaFim = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
-    }
-
     const pomodoroTimer = () => {
         interval = setInterval(() => {
         updateTime((time) => (time - 1000));
@@ -120,7 +122,7 @@ function Pagina() {
             <Information style={style} click={closeNotes} dados={dados} historico={historico} setHistorico={setHistorico} />
             <div className="section-up">
                 <div className="texts">
-                    <Spotify_Api />
+                    <SpotifyApi />
                     <FontAwesomeIcon onClick={openNotes} icon={faBook} className="navegation" />
                 </div>
                 <h3 className="session">Session</h3>

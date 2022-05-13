@@ -1,13 +1,13 @@
 import Botao from '../Botao/Botao';
 import React, { useEffect, useState } from 'react';
-import { setClientToken } from './Spotify_Api';
+import { setClientToken } from './SpotifyApi';
 
 const authEndpoint = "https://accounts.spotify.com/authorize?"
 const clientId = "7d4162ab5fb94f79867df22e4f821eef";
 const redirectUri = "http://localhost:3000/";
 const scopes = ["user-library-read", "playlist-read-private"]
 
-export const SpotifyAuth = ({}) => {  
+export const SpotifyAuth = () => {  
 
     const [token, setToken] = useState("");
 
