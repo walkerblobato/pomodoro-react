@@ -329,6 +329,7 @@ main {
 
   .historical {
     border-bottom: 1px solid #878787;
+    border-left: none;
   }
 
   .go-out {
@@ -359,7 +360,7 @@ main {
   }
 
   h1 {
-    margin: 25px 20px;
+    margin: 30px 20px;
   }
 
 }
