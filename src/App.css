@@ -147,7 +147,7 @@ main {
   left: 0;
   border-radius: 30px;
   padding: 10px 0 0 0;
-  overflow-x: auto;
+  overflow-x: hidden;
 }
 
 .text-area {

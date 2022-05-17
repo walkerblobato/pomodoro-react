@@ -5,11 +5,11 @@ import { Historic } from '../Historic/Historic'
 
 export function Information({ style, click, dados, historico, setHistorico }) {
 
-    const[valores, setValores] = useState('');
-    
+    const [valores, setValores] = useState('');
+
     localStorage.setItem('ls_dados', JSON.stringify(dados));
     JSON.parse(window.localStorage.getItem('ls_dados'));
-   
+
     useEffect(() => {
         const mostrarTextArea = window.localStorage.getItem('ls_valores');
         setValores(mostrarTextArea);
@@ -28,11 +28,11 @@ export function Information({ style, click, dados, historico, setHistorico }) {
             dados.splice(0, dados.length)
         }
 
-        return ( 
-        dados.map((item, index) => 
-        <li className="historical-data" key={index}>
-            {item.data} <span className="data-spacing1">:</span> {item.horaInicio} <span className="data-spacing2">-</span> {item.horaFim ? item.horaFim : 'Running'}
-        </li>))
+        return (
+            dados.map((item, index) =>
+                <li className="historical-data" key={index}>
+                    {item.data} <span className="data-spacing1">:</span> {item.horaInicio} <span className="data-spacing2">-</span> {item.horaFim ? item.horaFim : 'Running'}
+                </li>))
     }
 
     const limparHistorico = () => {
@@ -42,8 +42,8 @@ export function Information({ style, click, dados, historico, setHistorico }) {
 
     return (
         <div className={style}>
-            <Historic click={click} mostrarDados={mostrarDados} limparHistorico={limparHistorico}/>
-            <Notes valores={valores} handleChange={handleChange} armazenar={armazenar}/>
+            <Historic click={click} mostrarDados={mostrarDados} limparHistorico={limparHistorico} />
+            <Notes valores={valores} handleChange={handleChange} armazenar={armazenar} />
         </div>
     )
 }

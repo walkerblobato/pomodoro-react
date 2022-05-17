@@ -11,30 +11,29 @@ let newTime;
 let interval;
 
 function Pagina() {
-    const[time, updateTime] = useState(1500000); 
-    const[running, updateRunning] = useState(false);
-    const[pause, updatePause] = useState(true);
-    const[style, setStyle] = useState("notes");
+    const [time, updateTime] = useState(1500000);
+    const [running, updateRunning] = useState(false);
+    const [pause, updatePause] = useState(true);
+    const [style, setStyle] = useState("notes");
     const [historico, setHistorico] = useState(false);
-    
+
     const [dados] = useState(() => {
         const dadosSalvos = JSON.parse(localStorage.getItem('ls_dados'));
 
         return dadosSalvos || [];
     })
-     
+
     const startTime = () => {
         if (time > 0) {
             updateRunning(true);
             updatePause(false);
             setHistorico(false);
-            inicialDateAndHour();       
+            inicialDateAndHour();
         };
     };
 
-    
 
-    useEffect(() => {  
+    useEffect(() => {
         const finishHour = () => {
             dados[dados.length - 1].horaFim = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
         }
@@ -74,12 +73,12 @@ function Pagina() {
 
     const downTime = () => {
         if (running) return;
-        
+
         if (time === 0) {
             return;
         };
 
-        updateTime((time) => time - 60000);  
+        updateTime((time) => time - 60000);
     };
 
     const openNotes = () => {
@@ -91,7 +90,7 @@ function Pagina() {
     }
 
     const sessionTime = () => {
-        if ((running) === false && time > 0)  {
+        if ((running) === false && time > 0) {
             newTime = time;
         };
 
@@ -108,7 +107,7 @@ function Pagina() {
 
     const pomodoroTimer = () => {
         interval = setInterval(() => {
-        updateTime((time) => (time - 1000));
+            updateTime((time) => (time - 1000));
         }, document.hidden ? 500 : 1000);
     }
 
@@ -130,7 +129,7 @@ function Pagina() {
                 <audio id="audio" src="/alarme.mp3"></audio>
             </div>
             <div>
-                <PartDown time={sessionTime()} upTime={upTime} downTime={downTime}/>
+                <PartDown time={sessionTime()} upTime={upTime} downTime={downTime} />
             </div>
         </main>
     )
