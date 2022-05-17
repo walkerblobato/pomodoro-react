@@ -363,6 +363,14 @@ main {
     margin: 30px 20px;
   }
 
+  .data-spacing1 {
+    padding-right:  30px;
+  }
+
+  .data-spacing2 {
+    padding: 0 30px;
+  }
+
 }
 
 @media (min-width: 701px) {
