@@ -7,12 +7,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 
 
-let newTime;
-let interval;
 
 function Pagina() {
-    const [time, updateTime] = useState(1500000);
+
+    let interval;
+
+    const [newTime, updateNewTime] = useState(1500000);
+    const [timeBreak, updateTimeBreak] = useState(300000);
+    const [time, updateTime] = useState(newTime);
     const [running, updateRunning] = useState(false);
+    const [runningTimeBreak, updateRunningTimeBreak] = useState(false);
     const [pause, updatePause] = useState(true);
     const [style, setStyle] = useState("notes");
     const [historico, setHistorico] = useState(false);
@@ -28,57 +32,36 @@ function Pagina() {
             updateRunning(true);
             updatePause(false);
             setHistorico(false);
-            inicialDateAndHour();
+
+            if (runningTimeBreak === false) {
+                inicialDateAndHour();
+            }
         };
     };
-
-
-    useEffect(() => {
-        const finishHour = () => {
-            dados[dados.length - 1].horaFim = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
-        }
-
-        if (time === 0 && running === true) {
-            playSound();
-            finishHour();
-            updateRunning(false);
-        }
-
-        if (running && !pause && time > 0) {
-            pomodoroTimer();
-        };
-
-        // Para limpar a variável interval quando uma das condições não forem atendidas
-        return () => {
-            clearInterval(interval);
-        };
-
-    }, [running, pause, time, dados]);
 
     const resetTime = () => {
         if (time > 0) {
             dados.splice(dados.length - 1);
         }
-
+        
         updatePause(true);
-        updateRunning(false);
         updateTime(newTime);
+        updateRunning(false);
     };
+
 
     const upTime = () => {
         if (running) return
 
-        updateTime((time) => time + 60000);
+        updateNewTime(() => newTime + 60000);
+        updateTime(() => newTime + 60000);
     };
 
     const downTime = () => {
-        if (running) return;
+        if (running || newTime === 0)  return;
 
-        if (time === 0) {
-            return;
-        };
-
-        updateTime((time) => time - 60000);
+        updateNewTime(() => newTime - 60000);
+        updateTime(() => newTime - 60000);
     };
 
     const openNotes = () => {
@@ -89,18 +72,12 @@ function Pagina() {
         setStyle("notes");
     }
 
-    const sessionTime = () => {
-        if ((running) === false && time > 0) {
-            newTime = time;
-        };
-
-        return newTime
-    }
-
     const inicialDateAndHour = () => {
         dados.push({
             data: new Date().toLocaleDateString('pt-BR'),
-            horaInicio: new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }),
+            horaInicio: new Date().toLocaleTimeString('en-GB', { 
+                hour: '2-digit', minute: '2-digit' 
+            }),
             horaFim: null,
         });
     }
@@ -116,20 +93,92 @@ function Pagina() {
         audio.play();
     }
 
+    const upTimeBreak = () => {
+        updateTimeBreak((time) => time + 60000);
+    }
+
+    const downTimeBreak = () => {
+        if (timeBreak === 0) return;
+
+        updateTimeBreak((time) => time - 60000);  
+    };
+
+    useEffect(() => {
+        const finishHour = () => {
+            dados[dados.length - 1].horaFim = new Date().toLocaleTimeString('en-GB', { 
+                hour: '2-digit', minute: '2-digit' 
+            });
+        }
+
+        if (time === 0 && running === true) {
+            playSound();
+            updateTime(timeBreak);
+            updateRunningTimeBreak(true);
+
+
+            if (dados[dados.length - 1].horaFim == null) {
+                finishHour();
+            }
+            
+            if (time === 0 && runningTimeBreak){
+                updateRunning(false);
+                updateRunningTimeBreak(false);
+                updateTime(newTime);
+                playSound(); 
+            }    
+        }
+
+        if (running && !pause && time > 0) {
+            pomodoroTimer();
+        };
+
+        // Para limpar a variável interval quando uma das condições não forem atendidas
+        return () => {
+            clearInterval(interval);
+        };
+
+    }, [running, time]);
+
     return (
         <main className="main">
-            <Information style={style} click={closeNotes} dados={dados} historico={historico} setHistorico={setHistorico} />
+
+            <Information 
+                style={style} 
+                time={time}
+                dados={dados} 
+                historico={historico}
+                click={closeNotes}  
+                setHistorico={setHistorico} />
+
             <div className="section-up">
+
                 <div className="texts">
                     <SpotifyApi />
-                    <FontAwesomeIcon onClick={openNotes} icon={faBook} className="navegation" />
+                    <FontAwesomeIcon 
+                        onClick={openNotes} 
+                        icon={faBook} 
+                        className="navegation" />
                 </div>
-                <h3 className="session">Session</h3>
-                <Cronometro time={time} startTime={startTime} resetTime={resetTime} />
+
+                <h3 className="session">{runningTimeBreak ? 'Break Length' : 'Session Length'}</h3>
+
+                <Cronometro 
+                    time={time} 
+                    startTime={startTime}  
+                    resetTime={resetTime} />
+
                 <audio id="audio" src="/alarme.mp3"></audio>
+
             </div>
+
             <div>
-                <PartDown time={sessionTime()} upTime={upTime} downTime={downTime} />
+                <PartDown
+                    timeBreak={timeBreak} 
+                    time={newTime} 
+                    upTime={upTime} 
+                    downTime={downTime} 
+                    upTimeBreak={upTimeBreak}
+                    downTimeBreak={downTimeBreak}/>
             </div>
         </main>
     )

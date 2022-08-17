@@ -5,17 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 
-function PartDown({ time, upTime, downTime }) {
-    const [time_break, updateTimeBreak] = useState(300000)
-
-    const upTimeBreak = () => {
-        updateTimeBreak((time) => time + 60000);
-    }
-
-    const downTimeBreak = () => {
-        updateTimeBreak((time) => time - 60000);  
-    };
-
+function PartDown(props) {
+    
+    const { time, upTime, downTime, upTimeBreak, downTimeBreak, timeBreak } = props;
+    
     return (
         <div className="part-down">
             <div>
@@ -36,7 +29,7 @@ function PartDown({ time, upTime, downTime }) {
                     <Botao clicou={upTimeBreak} className="arrows">
                         <FontAwesomeIcon icon={faArrowUp} />
                     </Botao>
-                    <MinutsDown time={time_break} />
+                    <MinutsDown time={timeBreak} />
                     <Botao clicou={downTimeBreak} className="arrows">
                         <FontAwesomeIcon icon={faArrowDown} />
                     </Botao>

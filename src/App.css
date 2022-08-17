@@ -67,11 +67,12 @@ main{
   cursor: pointer;
   border-radius: 10px;
   border: none;
+  transition: all ease-in-out 0.8s;
 }
 
 .buttons-main:hover {
   background-color: rgba(219, 219, 219, 0.644);
-  transition: all ease-in 0.8s;
+  transition: all ease-in-out 0.8s;
 }
 
 .part-down {

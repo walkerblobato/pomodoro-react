@@ -3,13 +3,16 @@ import { Notes } from '../Notes/Notes';
 import { Historic } from '../Historic/Historic'
 
 
-export function Information({ style, click, dados, historico, setHistorico }) {
+export function Information(props) {
 
+    const { style, click, dados, historico, setHistorico, time } = props
     const [valores, setValores] = useState('');
 
-    localStorage.setItem('ls_dados', JSON.stringify(dados));
-    JSON.parse(window.localStorage.getItem('ls_dados'));
-
+    if (time === 0 && dados.map((item) => item.horaFim)) {
+        localStorage.setItem('ls_dados', JSON.stringify(dados));
+        JSON.parse(window.localStorage.getItem('ls_dados'));
+    }
+    
     useEffect(() => {
         const mostrarTextArea = window.localStorage.getItem('ls_valores');
         setValores(mostrarTextArea);
