@@ -1,11 +1,10 @@
 import Cronometro from '../Cronometro/Cronometro';
 import PartDown from '../PartDown/PartDown';
+import Botao from '../Botao/Botao';
 import { Information } from '../Information/Information';
-import { SpotifyApi } from '../Spotify/SpotifyApi';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook } from '@fortawesome/free-solid-svg-icons';
-
+import { faBook, faHeadphones } from '@fortawesome/free-solid-svg-icons';
 
 
 function Pagina() {
@@ -153,7 +152,12 @@ function Pagina() {
             <div className="section-up">
 
                 <div className="texts">
-                    <SpotifyApi />
+                    <div>
+                        <FontAwesomeIcon icon={faHeadphones} className="navegation" />
+                        <Botao class="login-spotify">
+                            Login Spotify
+                        </Botao>
+                    </div>
                     <FontAwesomeIcon 
                         onClick={openNotes} 
                         icon={faBook} 
