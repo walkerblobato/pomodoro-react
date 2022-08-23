@@ -57,7 +57,7 @@ function Pagina() {
     };
 
     const downTime = () => {
-        if (running || newTime === 0)  return;
+        if (running || newTime === 60000)  return;
 
         updateNewTime(() => newTime - 60000);
         updateTime(() => newTime - 60000);

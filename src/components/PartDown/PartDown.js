@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Botao from '../Botao/Botao';
 import { MinutsDown} from '../MinutsDown/MinutsDown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

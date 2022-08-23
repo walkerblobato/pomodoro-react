@@ -5,10 +5,11 @@ import { Historic } from '../Historic/Historic'
 
 export function Information(props) {
 
-    const { style, click, dados, historico, setHistorico, time } = props
+    const { style, click, dados, historico, setHistorico, time, } = props
     const [valores, setValores] = useState('');
 
-    if (time === 0 && dados.map((item) => item.horaFim)) {
+
+    if (dados.map((item) => item.horaFim)) {
         localStorage.setItem('ls_dados', JSON.stringify(dados));
         JSON.parse(window.localStorage.getItem('ls_dados'));
     }
