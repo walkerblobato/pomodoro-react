@@ -5,11 +5,10 @@ import { Historic } from '../Historic/Historic'
 
 export function Information(props) {
 
-    const { style, click, dados, historico, setHistorico, time, } = props
+    const { style, click, dados, historico, setHistorico, running, runningTimeBreak } = props
     const [valores, setValores] = useState('');
 
-
-    if (dados.map((item) => item.horaFim)) {
+    if (runningTimeBreak && dados) {
         localStorage.setItem('ls_dados', JSON.stringify(dados));
         JSON.parse(window.localStorage.getItem('ls_dados'));
     }
@@ -40,8 +39,10 @@ export function Information(props) {
     }
 
     const limparHistorico = () => {
-        localStorage.removeItem('ls_dados');
-        setHistorico(true)
+        if (runningTimeBreak || !running) {
+            localStorage.removeItem('ls_dados');
+            setHistorico(true);
+        }
     }
 
     return (

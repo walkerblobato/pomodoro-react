@@ -37,7 +37,7 @@ main{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 20px;
 }
 
 .stopwatch {
@@ -126,6 +126,32 @@ main {
 }
 
 .notes {
+  position: fixed;
+  display: flex;
+  width: 700px;
+  height: 500px;
+  transition: all ease .3s;
+  background-color: rgb(37, 38, 78);
+  border-radius: 30px !important;
+  left: -1500px;
+  padding: 10px 0 0 0;
+  overflow-x: hidden;
+}
+
+.notes2 {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: all ease .3s;
+  background-color: rgb(37, 38, 78);
+  right: 0;
+  border-radius: 30px !important;
+  padding: 10px 0 0 0;
+  overflow-x: hidden;
+}
+
+.close-spotify {
   position: absolute;
   display: flex;
   width: 700px;
@@ -138,17 +164,34 @@ main {
   overflow-x: auto;
 }
 
-.notes2 {
+.open-spotify {
   position: absolute;
   display: flex;
   width: 100%;
   height: 100%;
   transition: all ease .3s;
   background-color: rgb(37, 38, 78);
-  left: 0;
+  right: 0;
   border-radius: 30px;
-  padding: 10px 0 0 0;
   overflow-x: hidden;
+  padding: 40px 0 0 0;
+}
+
+.button-close-spotify {
+  cursor: pointer;
+  position: absolute;
+  top: 12px;
+  left: 320px;
+  color: white;
+  font-weight: bolder;
+  font-size: 18px;
+  transition: all ease .3s;
+}
+
+.button-close-spotify:hover {
+  transition: all ease .3s;
+  letter-spacing: 3px;
+  left: 317px;
 }
 
 .text-area {
