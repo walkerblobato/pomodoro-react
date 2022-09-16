@@ -109,7 +109,7 @@ function Pagina() {
         const pomodoroTimer = () => {
             interval = setInterval(() => {
                 updateTime((time) => (time - 1000));
-            }, (document.hidden && !openSpotify) ? 500 : 1000);
+            }, document.hidden ? 500 : 1000);
         }
 
         if (time === 0 && running === true) {
