@@ -154,8 +154,7 @@ function Pagina() {
             
             <EmbedSpotify 
                 className={openSpotify ? 'open-spotify' : 'close-spotify'}
-                click={() => setOpenSpotify(false)}
-                time={time}/>
+                click={() => setOpenSpotify(false)}/>
 
             <div className='section-up'>
 
