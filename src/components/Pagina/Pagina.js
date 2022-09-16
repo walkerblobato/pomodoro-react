@@ -109,7 +109,7 @@ function Pagina() {
         const pomodoroTimer = () => {
             interval = setInterval(() => {
                 updateTime((time) => (time - 1000));
-            }, document.hidden ? 500 : 1000);
+            }, (document.hidden && !openSpotify) ? 500 : 1000);
         }
 
         if (time === 0 && running === true) {
@@ -138,7 +138,7 @@ function Pagina() {
             clearInterval(interval);
         };
 
-    }, [running, time, dados, newTime, pause, runningTimeBreak, timeBreak]);
+    }, [running, time, dados, newTime, pause, runningTimeBreak, timeBreak, openSpotify]);
 
     return (
         <main className='main'>
@@ -154,7 +154,8 @@ function Pagina() {
             
             <EmbedSpotify 
                 className={openSpotify ? 'open-spotify' : 'close-spotify'}
-                click={() => setOpenSpotify(false)}/>
+                click={() => setOpenSpotify(false)}
+                time={time}/>
 
             <div className='section-up'>
 

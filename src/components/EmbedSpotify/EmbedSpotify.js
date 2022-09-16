@@ -1,4 +1,4 @@
-function EmbedSpotify({ className, click }) {
+function EmbedSpotify({ className, click, time }) {
 
     return (
         <div className={className}>
